@@ -1,0 +1,14 @@
+.message-wrapper {
+  display: flex;
+  flex-direction: row;
+
+.message-text {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: aqua;
+  padding: 8px;
+  width: fit-content;
+  max-width: 300px;
+  overflow-wrap: anywhere;
+ }
+}
