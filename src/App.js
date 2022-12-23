@@ -1,25 +1,31 @@
 import {useEffect, useState} from "react";
 import socket from "./feature/socket";
 import ChatBox from "./components/chatBox/ChatBox.components";
+import JoinRoom from "./components/joinRoom/JoinRoom.component";
 
-const styles = {
-    display: "flex",
-    justifyContent: "center",
-}
+import "./App.styles.scss"
+
 function App() {
-    const [userName] = useState(`user_${Math.random().toFixed(6)}`)
+    const [roomData, setRoomData] = useState({roomName: "", isRunning: false})
+    const [instanceMap, setInstanceMap] = useState("")
 
     useEffect(() => {
-        // socket(userName).connect()
         socket.connect()
-    }, [userName])
+    }, [])
 
 
-  return (
-    <div style={styles}>
-      <ChatBox/>
-    </div>
-  );
+    return (
+        <div className="top-level">
+            {
+                // instanceMap && <TypeAnimationComponent instanceMap={instanceMap}/>
+            }
+            {
+                !roomData.isRunning ? <JoinRoom setRoomData={setRoomData}/> :
+                    <ChatBox roomName={roomData.roomName} username={roomData.username}
+                             collectInstance={setInstanceMap}/>
+            }
+        </div>
+    );
 }
 
 export default App;

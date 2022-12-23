@@ -1,29 +1,106 @@
 .chat-box-container {
-  width: 600px;
-  height: 800px;
-  border: 2px solid black;
+  background-color: rgb(39, 39, 39);
+  width: 40%;
+  //border: 1px solid white;
+  height: 90vh;
 
-
-  .message-input-container {
+  .chat-box-top {
     display: flex;
-    width: 100%;
-    height: 30px;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 80%;
 
-    .message-input {
-      flex: 10;
+    .message-input-container {
+      display: flex;
+      padding-top: 15px;
+      width: 79%;
+      height: 40px;
+
+      .message-input {
+        width: 100%;
+        margin-left: auto;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid bisque;
+        border-right: 1px solid bisque;
+        color: bisque;
+        background-color: rgb(39, 39, 39)
+      }
+
+      .message-button {
+        display: none;
+      }
+
     }
 
-    .message-button {
-      flex: 2;
+    .connected-users-list-wrapper {
+      color: #60ac39;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 95%;
+
+      .on-connection-message-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 120px;
+        text-align: end;
+      }
+
+        .connected-users-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          overflow: auto;
+        }
+
     }
   }
+
 
   .messages-list-container {
     display: flex;
     flex-direction: column;
     padding: 5px;
-    gap: 5px;
+    margin-top: 40px;
+    //height: 800px;
+    overflow: auto;
   }
 
-
 }
+
+::-webkit-scrollbar {
+  width: 100px;
+  height: 100px;
+}
+//::-webkit-scrollbar-button {
+//  width: 0px;
+//  height: 0px;
+//}
+//::-webkit-scrollbar-thumb {
+//  //background: #438136;
+//  //border: 7px none #ffffff;
+//  border-radius: 50px;
+//}
+//::-webkit-scrollbar-thumb:hover {
+//  //background: #ababab;
+//}
+//::-webkit-scrollbar-thumb:active {
+//  //background: #000000;
+//}
+//::-webkit-scrollbar-track {
+//  //background: #000000;
+//  border: 0px none #ffffff;
+//  border-radius: 1px;
+//}
+//::-webkit-scrollbar-track:hover {
+//  background: #080808;
+//}
+//::-webkit-scrollbar-track:active {
+//  background: #050505;
+//}
+//::-webkit-scrollbar-corner {
+//  background: transparent;
+//}

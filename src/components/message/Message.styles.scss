@@ -1,14 +1,33 @@
 .message-wrapper {
   display: flex;
-  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
 
-.message-text {
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: aqua;
-  padding: 8px;
-  width: fit-content;
-  max-width: 300px;
-  overflow-wrap: anywhere;
- }
+  .message-username {
+    width: 120px;
+    text-align: end;
+  }
+
+  .right-side {
+    display: flex;
+    max-width: 60%;
+
+    .line {
+      border: 1px solid rgba(194, 189, 189, 0.53);
+    }
+
+    .message-text {
+      color: #a6a28c;
+      border-radius: 5px;
+      padding: 8px;
+      width: fit-content;
+      overflow-wrap: anywhere;
+    }
+  }
+
+
+  div {
+    color: white;
+  }
 }
