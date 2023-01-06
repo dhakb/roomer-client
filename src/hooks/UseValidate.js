@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const UseValidate = () => {
    const [value, setValue] = useState("")
@@ -17,7 +17,6 @@ const UseValidate = () => {
        for(let char of value) {
            console.log(char, /[0-9]/ig.test(char))
            if(/[0-9]/ig.test(char)) {
-               console.log("wierd")
                return false
            }
        }
