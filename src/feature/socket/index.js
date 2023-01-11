@@ -1,5 +1,5 @@
 import {io} from "socket.io-client"
 
-const socket = io("https://chatter-server-d9jzp.ondigitalocean.app/roomer-server2", {autoConnect: false})
+const socket = io("https://urchin-app-4g4bu.ondigitalocean.app/", {autoConnect: false})
 
 export default  socket

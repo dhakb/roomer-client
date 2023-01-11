@@ -8,14 +8,12 @@ const UseValidate = () => {
     }
 
     const validateValue = () => {
-       console.log("aaaaa", value)
        if(value.length >  16) {
            return false
        }
 
 
        for(let char of value) {
-           console.log(char, /[0-9]/ig.test(char))
            if(/[0-9]/ig.test(char)) {
                return false
            }
