@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import UseValidate from "../../hooks/UseValidate";
 
-import "./JoinRoom.styles.scss"
+import "./RoomInputForm.styles.scss"
 
-const JoinRoom = ({setRoomData}) => {
+const RoomInputForm = ({setRoomData}) => {
     const [roomName, setRoomName] = useState("")
     const [username, setUsername] = useState("")
     const {valueChangeHandler, validateValue, value} = UseValidate()
@@ -38,4 +38,4 @@ const JoinRoom = ({setRoomData}) => {
     );
 };
 
-export default JoinRoom;
+export default RoomInputForm;

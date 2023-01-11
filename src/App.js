@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import socket from "./feature/socket";
 import ChatBox from "./components/chatBox/ChatBox.components";
-import JoinRoom from "./components/joinRoom/JoinRoom.component";
+import RoomInputForm from "./components/RoomInputForm/RoomInputForm.component";
 
 import "./App.styles.scss"
 
@@ -20,7 +20,7 @@ function App() {
                 // instanceMap && <TypeAnimationComponent instanceMap={instanceMap}/>
             }
             {
-                !roomData.isRunning ? <JoinRoom setRoomData={setRoomData}/> :
+                !roomData.isRunning ? <RoomInputForm setRoomData={setRoomData}/> :
                     <ChatBox roomName={roomData.roomName} username={roomData.username}
                              collectInstance={setInstanceMap}/>
             }
