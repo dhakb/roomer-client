@@ -9,20 +9,28 @@ const nicknm_colors = ["#6684e1", "#b854d4", "#cfb017", "#61828e", "#787866", "#
 const getRandInRange = (max) => {
     return Math.floor(Math.random() * max)
 }
+
 const ChatBox = ({roomName, username, collectInstance}) => {
     const [message, setMessage] = useState("")
     const [messages, setMessages] = useState([])
     const [joinedUsers, setJoinedUsers] = useState([])
     const [color, setColor] = useState("")
-    const [lorem, setLorem] = useState("")
+    // const [lorem, setLorem] = useState("")
 
+  
     useEffect(() => {
         socket.emit("join", roomName)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
     useEffect(() => {
-        socket.emit("joined-room", {roomName, username, hsl: nicknm_colors[getRandInRange(nicknm_colors.length - 1)]})
+        const color_nick = nicknm_colors[getRandInRange(nicknm_colors.length - 1)]
+        socket.emit("joined-room", {roomName, username, hsl: color_nick})
+        setColor(color_nick)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     useEffect(() => {
         socket.on("user-joined", (username) => {
@@ -30,11 +38,14 @@ const ChatBox = ({roomName, username, collectInstance}) => {
         })
     }, [])
 
+
     useEffect(() => {
         socket.on("getJoinedUsers", (users) => {
-            setJoinedUsers(users)
+            setJoinedUsers(users.filter(user => user.roomname === roomName))
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     useEffect(() => {
         socket.on("receiveMessage", (message) => {
@@ -44,36 +55,39 @@ const ChatBox = ({roomName, username, collectInstance}) => {
 
 
     useEffect(() => {
-        socket.on("getDisconnectedUser", ({username}) => {
-            setMessages((prevState) => [{username: "*", message: `${username} disconnected!`, status: "disconnected"}, ...prevState])
+        socket.on("getDisconnectedUser", ({username, roomname}) => {
+            if(roomname === roomName) {
+                setMessages((prevState) => [{username: "*", message: `${username} disconnected!`, status: "disconnected"}, ...prevState])
+            }
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
     useEffect(() => {
-        setColor(nicknm_colors[getRandInRange(nicknm_colors.length - 1)])
-    }, [username])
-
-    useEffect(() => {
         socket.on("handshake", (instance) => {
             collectInstance(instance)
-            setLorem(instance)
+            // setLorem(instance)
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[messages])
+
 
     const sendMessageHandler = () => {
         if (!message) return
 
         setMessages([{other: false, message, username, hsl: color}, ...messages])
-        socket.emit("sendMessage", {message, roomName, username, color})
+        socket.emit("sendMessage", {message, roomName, username, hsl: color})
         setMessage("")
     }
+
 
     const onMessageInputKeyDown = (e) => {
         if (e.key === "Enter") {
             sendMessageHandler()
         }
     }
+
 
     return (
         <div className="chat-box-container">
@@ -93,7 +107,7 @@ const ChatBox = ({roomName, username, collectInstance}) => {
                     <div className="connected-users-list">
                         {
                             joinedUsers.map((user) => (
-                                <span key={uuidv4()}>@{user.username};</span>
+                                <span key={uuidv4()} style={{color: user.hsl}}>@{user.username};</span>
                             ))
                         }
                     </div>

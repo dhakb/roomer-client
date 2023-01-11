@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import UseValidate from "../../hooks/UseValidate";
+import UseValidateUsername from '../../hooks/UseValidateUsername';
 
 import "./RoomInputForm.styles.scss"
 
 const RoomInputForm = ({setRoomData}) => {
     const [roomName, setRoomName] = useState("")
-    const [username, setUsername] = useState("")
-    const {valueChangeHandler, validateValue, value} = UseValidate()
+    // const [username, setUsername] = useState("")
+    const {usernameValueChangeHandler, validateUsername, value} = UseValidateUsername()
 
 
     const onJoinRoomHandler = () => {
-        const isValid = validateValue()
+        const isValid = validateUsername()
         if (roomName && isValid ) {
             setRoomData({isRunning: true, roomName, username: value})
         } else {
@@ -31,7 +31,7 @@ const RoomInputForm = ({setRoomData}) => {
                        onKeyDown={onJoinRoomInputKeyDown}
                        placeholder="Enter room name.."/>
             </label>
-            <input type="text" value={value} onChange={valueChangeHandler}
+            <input type="text" value={value} onChange={usernameValueChangeHandler}
                    onKeyDown={onJoinRoomInputKeyDown} placeholder="enter as a <username>"/>
             <button onClick={onJoinRoomHandler}>Join</button>
         </div>

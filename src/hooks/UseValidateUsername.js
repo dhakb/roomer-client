@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const UseValidate = () => {
+const UseValidateUsername = () => {
    const [value, setValue] = useState("")
 
     const valueChangeHandler = (e) => {
@@ -25,9 +25,12 @@ const UseValidate = () => {
 
     return {
         value,
-        valueChangeHandler,
-        validateValue,
+        usernameValueChangeHandler: valueChangeHandler,
+        validateUsername: validateValue,
     }
 };
 
-export default UseValidate;
+export default UseValidateUsername;
+
+
+
