@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import socket from "./feature/socket";
 import ChatBox from "./components/chatBox/ChatBox.components";
-import RoomInputForm from "./components/RoomInputForm/RoomInputForm.component";
+import RoomInputForm from "./components/roomInputForm/RoomInputForm.component"
 import TypeAnimation from "./components/InstanceMapAnime/InstanceMapAnimation.component";
 
 import "./App.styles.scss"
