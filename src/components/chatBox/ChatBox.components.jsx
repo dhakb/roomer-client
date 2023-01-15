@@ -15,7 +15,7 @@ const ChatBox = ({roomName, username, collectInstance}) => {
     const [messages, setMessages] = useState([])
     const [joinedUsers, setJoinedUsers] = useState([])
     const [color, setColor] = useState("")
-    // const [lorem, setLorem] = useState("")
+    const [isMobile, setIsMobile] = useState(false)
 
   
     useEffect(() => {
@@ -72,6 +72,18 @@ const ChatBox = ({roomName, username, collectInstance}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[messages])
 
+    useEffect(() => {
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+            setIsMobile(true)
+        }
+    }, [])
+
 
     const sendMessageHandler = () => {
         if (!message) return
@@ -88,7 +100,6 @@ const ChatBox = ({roomName, username, collectInstance}) => {
         }
     }
 
-
     return (
         <div className="chat-box-container">
             <div className="chat-box-top">
@@ -96,7 +107,7 @@ const ChatBox = ({roomName, username, collectInstance}) => {
                 <div className="message-input-container">
                     <input type="text" className="message-input" value={message}
                            onChange={(e) => setMessage(e.target.value)} onKeyDown={onMessageInputKeyDown}/>
-                    <button onClick={sendMessageHandler} className="message-button"></button>
+                    <button onClick={sendMessageHandler} className="message-button" style={isMobile ? {} : {display: "none"}}>send</button>
                 </div>
 
                 <div className="connected-users-list-wrapper">

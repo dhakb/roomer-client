@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const UseValidateUsername = () => {
+const useValidateUsername = () => {
    const [value, setValue] = useState("")
 
     const valueChangeHandler = (e) => {
@@ -8,7 +8,7 @@ const UseValidateUsername = () => {
     }
 
     const validateValue = () => {
-       if(value.length >  16) {
+       if(value.length > 16 || value.length <= 0) {
            return false
        }
 
@@ -30,7 +30,7 @@ const UseValidateUsername = () => {
     }
 };
 
-export default UseValidateUsername;
+export default useValidateUsername;
 
 
 
